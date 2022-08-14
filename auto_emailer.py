@@ -1,14 +1,20 @@
-import numpy as np
+
 import pandas as pd
+import send_email
+import email_body_generation
+
 
 email_list = pd.read_csv("Sample Data.csv")
 # print(email_list)
 
-def completed_check(item_list, i, output):
-    if item_list[i]=='Yes':
+
+def completed_check(item_list, count, output):
+
+    if item_list[count] == 'Yes':
         completed.append(output)
     else:
         un_completed.append(output)
+
 
 all_names = email_list['First Name'] + " " + email_list['Last Name']
 all_emails = email_list['Email']
@@ -22,25 +28,26 @@ requirement_lists = ([all_health_screen,
                       all_health_assessment,
                       all_digital_coaching,
                       all_first_activity,
-                      all_second_activity])
+                      all_second_activity,
+                      ])
 
 
 requirements = (['Health Screening',
                  'Health Assessment',
                  'Digital Coaching Program',
                  'First Activity Campaign',
-                 'Second Activity Campaign'])
+                 'Second Activity Campaign',
+                 ])
 
 for idx in range(len(all_emails)):
-    name = all_names[idx]
-    email = all_emails[idx]
+    name = str(all_names[idx])
+    email = str(all_emails[idx])
 
     completed = []
     un_completed = []
 
     for i in range(5):
-        list = requirement_lists[i]
-        completed_check(list, idx, requirements[i])
-    print(completed)
-    print(un_completed)
-    print('\n' * 3)
+        requirement_item = requirement_lists[i]
+        completed_check(requirement_item, idx, requirements[i])
+    email_body = email_body_generation.email_generation(name, completed, un_completed)
+    send_email.send_email('travis.magaluk@gmail.com', email, email_body)
