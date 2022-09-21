@@ -2,17 +2,16 @@ def clean_excel(data_frame):
     import numpy as np
     import pandas as pd
     # Column Names in the Excel Document that we want to keep in our final df.
-    list_of_column_names = ['Last Name', 'First Name', 'Member Status', 'Plan Status',
-                            'Last Health Assessment (VP Health Check)',
-                            'Last Digital Coaching (1 VP Journey)',
-                            'Health Screening (Worksite or Provider)',
-                            'Activity Campaigns (VP Team Challenges) **']
+    list_of_column_names = ['Last Name', 'First Name', 'Member Status', 'Plan Status', 'Product', 'Plan Type',
+                            'Last Health Assessment (VP Health Check)', 'Last Digital Coaching (1 VP Journey)',
+                            'Health Screening (Worksite or Provider)', 'Activity Campaigns (VP Team Challenges) **']
 
     # Pulling out only those column names we want to keep.
     df_cleaning = data_frame[list_of_column_names]
 
     # Only keeping the rows of the spreadsheet that are of status 'Subscriber'
-    df_cleaning = df_cleaning[df_cleaning['Member Status'] == 'SUBSCRIBER']
+    df_cleaning = df_cleaning[(df_cleaning['Member Status'] == 'SUBSCRIBER') & (df_cleaning['Product'] == 'SHARE') & (
+                df_cleaning['Plan Type'] == 'HDHP')]
 
     # Replacing any blank cells in this data frame with NaN
     df_cleaning = df_cleaning.replace(r'^\s*$', np.nan, regex=True)
@@ -56,3 +55,25 @@ def pull_gsheet_database():
 
     return df
 
+
+def reorder_rename_cols(old_df):
+    import pandas as pd
+    list_of_column_names = ['First Name',
+                            'Last Name',
+                            'Email Address',
+                            'Health Screening (Worksite or Provider)',
+                            'Last Health Assessment (VP Health Check)',
+                            'Last Digital Coaching (1 VP Journey)',
+                            'Activity Campaigns (VP Team Challenges) **',
+                            'Initiatives Completed',
+                            'Reimbursements Received',
+                            'Reimbursement Left',
+                            'Last Email Sent (Y/N)',
+                            'Current Employee (Y/N)']
+
+    old_df = old_df[list_of_column_names].copy()
+    renamed_df = old_df.rename(columns={'Health Screening (Worksite or Provider)': 'Health Screening',
+                                        'Last Health Assessment (VP Health Check)': 'Health Assessment',
+                                        'Activity Campaigns (VP Team Challenges) **': 'Activity Campaigns'},
+                               inplace=True)
+    return renamed_df
