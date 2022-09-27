@@ -1,3 +1,29 @@
+def completed_check(person_data, list1, list2, item):
+    requirements = ({3: 'Health Screening',
+                     4: 'Health Assessment',
+                     5: 'Digital Coaching (VP Journey)',
+                     })
+    if person_data[item] == 1:
+        list1.append(requirements[item])
+    else:
+        list2.append(requirements[item])
+
+
+def check_activities(person_data, list1, list2):
+    requirements = ({6: 'First Activity Campaign',
+                     7: 'Second Activity Campaign',
+                     })
+    if person_data[6] == 0:
+        list2.append(requirements[6])
+        list2.append(requirements[7])
+    elif person_data[6] == 1:
+        list1.append(requirements[6])
+        list2.append(requirements[7])
+    else:
+        list1.append(requirements[6])
+        list1.append(requirements[7])
+
+
 def completed_items(completed_items_list):
     completed_items_string = ''
     for i in range(len(completed_items_list)):
@@ -11,7 +37,6 @@ def completed_items(completed_items_list):
 
 
 def un_completed_items(un_completed_items_list):
-
     un_completed_items_string = ''
     for i in range(len(un_completed_items_list)):
         if i < len(un_completed_items_list) - 2:
@@ -23,27 +48,35 @@ def un_completed_items(un_completed_items_list):
     return un_completed_items_string
 
 
-def email_generation(name, completed_items_list, un_completed_items_list):
-
+def email_generation(f_name, l_name, completed_items_list, un_completed_items_list):
     if len(completed_items_list) == 5:
+        phrase_2 = """
+        """
         completed_items_phrase = ("""You have completed all of the required activities for the health and wellness\
         program. Thank you for participating in this program. Make sure to submit a\
         receipt for reimbursement for passes or equipment.\n""")
         un_completed_items_phrase = ""
 
-    elif len(completed_items_list) == 0:
-        completed_items_phrase = ("""You have not completed any health and wellness initiatives to date. If you feel\
-                                    that this is an error, please reach out to Michelle Prows with any questions or\
-                                    concerns.""")
-        un_completed_items_phrase = ""
-
     elif len(completed_items_list) < 2:
-        completed_items_phrase = (f"""As of today, you have completed {completed_items_list[0]}.\
-                            Thank you for your efforts in order to complete these health and\
-                             wellness initiatives.""")
-        un_completed_items_string = un_completed_items(un_completed_items_list)
-        un_completed_items_phrase = (f"""In order to complete the requirements for the health and wellness program \
-                                            you still need to complete {un_completed_items_string}""")
+        completed_items_phrase = ("""<p>We encourage you to participate in Wasatch Academy’s Health and Wellness \\ 
+        program. In order to keep our benefits at the current level, we need your participation completing the 4\\ 
+        Healthy Living Requirements. We wanted to reach out to ask for your help to achieve these goals</p>
+        <p>Below are those 4 Healthy Living Requirements</p>
+        <ol type="1">
+            <li>Annual Onsite Health Screening August 24th in the Tiger's Den</li>
+            <li>Health Assessment Survey (Online through the Virgin Pulse app)</li>
+            <li>One Digital Coaching Program (Online through the Virgin Pulse app)</li>
+            <li>Two Activity Campaigns (Online through the Virgin Pulse app, below are 3 ways to achieve 1 campaign)</li>
+        </ol>
+            <ol type="2">
+                <li>7k steps 20 days in one month</li>
+                <li>Join a team challenge (1 per quarter)</li>
+                <li>Healthy Habit Challenge (1 per month, 4 Healthy Habit Challenges = 1 activity campaign)</li>
+            </ol>
+        <p>Once you have completed all 4 requirements you qualify to receive 50% reimbursements for any activities \\
+        or equipment you purchase, up to $100.00. </p>
+        """)
+        un_completed_items_phrase = ""
 
     else:
         completed_items_string = completed_items(completed_items_list)
@@ -58,7 +91,7 @@ def email_generation(name, completed_items_list, un_completed_items_list):
         <!DOCTYPE html>
         <html>
         <body>
-        <p>Dear {name},</p>
+        <p>Dear {f_name} {l_name},</p>
         <p>Thank you for being an active participant in \
         Wasatch Academy’s Health and wellness program. In order to keep our benefits \
         at the current level, we need 70% participation from faculty and staff. I \
@@ -71,7 +104,7 @@ def email_generation(name, completed_items_list, un_completed_items_list):
         Please reach out to Michelle Prows if \
         you have any questions regarding these requirements.</p>
         <p>Sincerely,</p>
-        <p>The Health and Wellness Committee</p>
+        <p>The Health and Wellness Team</p>
 
         </body>
 

@@ -162,3 +162,6 @@ xz=5.2.5=hca72f7f_1
 zeromq=4.3.4=h23ab428_0
 zlib=1.2.12=h4dc903c_2
 zstd=1.5.2=hcb37349_0
+
+pandas~=1.4.2
+numpy~=1.22.4

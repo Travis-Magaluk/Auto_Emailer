@@ -57,7 +57,6 @@ def pull_gsheet_database():
 
 
 def reorder_rename_cols(old_df):
-    import pandas as pd
     list_of_column_names = ['First Name',
                             'Last Name',
                             'Email Address',
@@ -70,10 +69,10 @@ def reorder_rename_cols(old_df):
                             'Reimbursement Left',
                             'Last Email Sent (Y/N)',
                             'Current Employee (Y/N)']
-
+    name_dic = {'Health Screening (Worksite or Provider)': 'Health Screening',
+                'Last Health Assessment (VP Health Check)': 'Health Assessment',
+                'Activity Campaigns (VP Team Challenges) **': 'Activity Campaigns',
+                'Last Digital Coaching (1 VP Journey)': 'VP Journey'}
     old_df = old_df[list_of_column_names].copy()
-    renamed_df = old_df.rename(columns={'Health Screening (Worksite or Provider)': 'Health Screening',
-                                        'Last Health Assessment (VP Health Check)': 'Health Assessment',
-                                        'Activity Campaigns (VP Team Challenges) **': 'Activity Campaigns'},
-                               inplace=True)
-    return renamed_df
+    old_df.rename(columns=name_dic, inplace=True)
+    return old_df

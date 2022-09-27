@@ -18,6 +18,25 @@ gsheet_db = data_cleaning.pull_gsheet_database()  # Pulling the Google sheets da
 
 all_data = pd.merge(clean_excel, gsheet_db, how="inner", on=["First Name", "Last Name"])  # Merging the two dfs
 
-# all_data = data_cleaning.reorder_rename_cols(all_data)
+# Only pulling the columns we really need and re-ordering them for consistency.
+all_data = data_cleaning.reorder_rename_cols(all_data)
 
-print(all_data)
+# Now iterate through each row in our data frame and start to generate and send emails to each person.
+for i in range(len(all_data)):
+    person_data = all_data.iloc[i]
+
+    f_name = person_data[0]
+    l_name = person_data[1]
+    email = person_data[2]
+
+    completed = []
+    un_completed = []
+
+    for j in range(3, 6):
+        email_body_generation.completed_check(person_data, completed, un_completed, j)
+
+    email_body_generation.check_activities(person_data, completed, un_completed)
+    print('Completed\n')
+    print(completed)
+    print('Uncompleted\n')
+    print(un_completed)
