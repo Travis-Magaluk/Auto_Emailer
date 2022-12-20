@@ -9,7 +9,8 @@ def clean_excel(data_frame):
     # Pulling out only those column names we want to keep.
     df_cleaning = data_frame[list_of_column_names]
 
-    # Only keeping the rows of the spreadsheet that are of status 'Subscriber'
+    # Only keeping the rows of the spreadsheet that are of status 'Subscriber' or product of 'SHARE'
+    # and Plan Type of 'HDHP'
     df_cleaning = df_cleaning[(df_cleaning['Member Status'] == 'SUBSCRIBER') & (df_cleaning['Product'] == 'SHARE') & (
                 df_cleaning['Plan Type'] == 'HDHP')]
 
@@ -41,6 +42,9 @@ def clean_excel(data_frame):
 
 
 def pull_gsheet_database():
+    # Using G=sheets to store some data. This Function pulls a Google sheet and reads the data into a data frame.
+    # Use this df to track employee emails as well as some other info about them. Mostly just
+    # collecting emails at this point.
     import gspread
     import pandas as pd
 
@@ -57,6 +61,7 @@ def pull_gsheet_database():
 
 
 def reorder_rename_cols(old_df):
+    # Function to rename columns in our DF. Getting rid of longer names for ease of moving forward.
     list_of_column_names = ['First Name',
                             'Last Name',
                             'Email Address',

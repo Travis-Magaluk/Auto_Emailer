@@ -2,6 +2,9 @@
 import pandas as pd
 import send_email
 import email_body_generation
+import getpass
+
+psw123 = getpass.getpass("Enter your password:")
 
 
 email_list = pd.read_csv("Sample Data.csv")
@@ -50,4 +53,4 @@ for idx in range(len(all_emails)):
         requirement_item = requirement_lists[i]
         completed_check(requirement_item, idx, requirements[i])
     email_body = email_body_generation.email_generation(name, completed, un_completed)
-    send_email.send_email('travis.magaluk@gmail.com', email, email_body)
+    send_email.send_email('travis.magaluk@gmail.com', email, email_body, psw123)
