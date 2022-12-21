@@ -26,8 +26,6 @@ all_data = pd.merge(clean_excel, gsheet_db, how="inner", on=["First Name", "Last
 # Only pulling the columns we really need and re-ordering them for consistency.
 all_data = data_cleaning.reorder_rename_cols(all_data)
 
-
-
 sent_count = 0
 
 # Now iterate through each row in our data frame and start to generate and send emails to each person.
@@ -52,3 +50,7 @@ for i in range(len(all_data)):
     sent_count += 1
 
 print(sent_count)
+
+print('Dogs are great!')
+
+print('This is another test. ')
