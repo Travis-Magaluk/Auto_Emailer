@@ -52,12 +52,23 @@ def un_completed_items(un_completed_items_list):
     return un_completed_items_string
 
 
-def email_generation(name, completed_items_list, un_completed_items_list):
-    if len(completed_items_list) == 5:
+def email_generation(name, completed_items_list, un_completed_items_list, reimbursements_received,
+                     reimbursements_outstanding):
+    if reimbursements_outstanding == 0:
+        completed_items_phrase = (f"""You have completed all of the required activities for the health and wellness\
+                program. Thank you for participating in this program. To date, you have received ${reimbursements_received} in reimbursements.\
+                You have reached the maximum limit of reimbursements for the Health and Wellness Program.\
+                Thank you so much for participating! There is nothing left you need to do. Please encourage your \
+                colleagues to participate in this program as well.\n""")
+        un_completed_items_phrase = ""
 
-        completed_items_phrase = ("""You have completed all of the required activities for the health and wellness\
-        program. Thank you for participating in this program. Make sure to submit a\
-        receipt for reimbursement for passes or equipment.\n""")
+
+    elif len(completed_items_list) == 5:
+
+        completed_items_phrase = (f"""You have completed all of the required activities for the health and wellness\
+        program. Thank you for participating in this program. To date, you have received ${reimbursements_received} in reimbursements.\
+        You still have a total of ${reimbursements_outstanding} to receive for completing all of your health and wellness iniatives.\
+        Make sure to submit a receipt for reimbursement for passes or equipment.\n""")
         un_completed_items_phrase = ""
 
     elif len(completed_items_list) < 2:

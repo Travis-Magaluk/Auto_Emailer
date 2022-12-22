@@ -73,7 +73,8 @@ def reorder_rename_cols(old_df):
                             'Reimbursements Received',
                             'Reimbursement Left',
                             'Last Email Sent (Y/N)',
-                            'Current Employee (Y/N)']
+                            'Current Employee (Y/N)',
+                            'Preferred First']
     name_dic = {'Health Screening (Worksite or Provider)': 'Health Screening',
                 'Last Health Assessment (VP Health Check)': 'Health Assessment',
                 'Activity Campaigns (VP Team Challenges) **': 'Activity Campaigns',
