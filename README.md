@@ -61,10 +61,10 @@ The script will then loop through each row of the data, generate a custom email,
 and send that email to the correct recipient. Below are screenshots of a few of the emails that
 were generated.
 
-![Email 1](Email_1.png) \
-![Email 2](Email_2.png) \
-![Email 3](Email_3.png) \
-![Email 4](Email_4.png)
+![Email 1](/Readme_Images/Email_1.png) \
+![Email 2](/Readme_Images/Email_1.png) \
+![Email 3](/Readme_Images/Email_1.png) \
+![Email 4](/Readme_Images/Email_1.png)
 
 Emails were generated successfully and saved multiple days of work for one of our 
 employees. 
