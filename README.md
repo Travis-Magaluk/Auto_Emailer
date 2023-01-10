@@ -46,7 +46,7 @@ issues. Feel free to use, clone, and adapt to your own needs.
 Below is a screenshot of the Employee data for the health and wellness program. 
 Names have been taken out to protect privacy.
 
-[Initial Data](/Readme_Images/Select_Health_Data.png)
+![Initial Data](/Readme_Images/Select_Health_Data.png)
 
 The Excel document is read in and converted to a Pandas Data Frame where the
 data is then manipulated to make it easier to generate custom emails. After
@@ -55,16 +55,16 @@ pulled from Google Sheets. This Google Sheets "Database" is where we are storing
 employee email addresses as well as some other information. A screenshot of the
 Google Sheets Database is shared below. 
 
-[Google Sheets Database](/Readme_Images/Google_Sheets_Database.png)
+![Google Sheets Database](/Readme_Images/Google_Sheets_Database.png)
 
 The script will then loop through each row of the data, generate a custom email,
 and send that email to the correct recipient. Below are screenshots of a few of the emails that
 were generated.
 
-[Email 1](Email_1.png) \
-[Email 2](Email_2.png) \
-[Email 3](Email_3.png) \
-[Email 4](Email_4.png)
+![Email 1](Email_1.png) \
+![Email 2](Email_2.png) \
+![Email 3](Email_3.png) \
+![Email 4](Email_4.png)
 
 Emails were generated successfully and saved multiple days of work for one of our 
 employees. 
