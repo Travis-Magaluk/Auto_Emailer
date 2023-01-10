@@ -10,7 +10,7 @@ import data_cleaning
 import send_email
 import email_body_generation
 
-# psw123 = getpass.getpass("Enter your password:")
+psw123 = getpass.getpass("Enter your password:")
 excel_file = input("Enter File Name to Process: ")  # Instead of hard coding the file name in, program takes file name
 # as user input.
 
@@ -51,15 +51,14 @@ for i in range(len(all_data)):
 
         completed = []  # place to store completed items
         un_completed = []  # place to store uncompleted items.
-        for j in range(3,
-                       6):  # Items 3-5 in the data are the HW initiatives. This is going to iterate through each item
+        for j in range(3, 6):  # Items 3-5 in the data are the HW initiatives. This is going to iterate through each item
             # and decide if each item will be appended to the completed items list or the uncompleted items list.
             email_body_generation.completed_check(person_data, completed, un_completed, j)
         email_body_generation.check_activities(person_data, completed, un_completed)
 
         email_body = email_body_generation.email_generation(name, completed, un_completed, r_rec, r_out)
         # print(email_body)
-        # send_email.send_email('travis.magaluk@gmail.com', email, email_body, psw123)
+        send_email.send_email('travis.magaluk@gmail.com', email, email_body, psw123)
         sent_count += 1
 
 print(sent_count, "emails were sent.")

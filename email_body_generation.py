@@ -68,6 +68,7 @@ def email_generation(name, completed_items_list, un_completed_items_list, reimbu
         completed_items_phrase = (f"""You have completed all of the required activities for the health and wellness\
         program. Thank you for participating in this program. To date, you have received ${reimbursements_received} in reimbursements.\
         You still have a total of ${reimbursements_outstanding} to receive for completing all of your health and wellness iniatives.\
+        This means that you are able to spend at least ${str(int(reimbursements_outstanding)*2)} on Passes or Equipment.
         Make sure to submit a receipt for reimbursement for passes or equipment.\n""")
         un_completed_items_phrase = ""
 
@@ -81,12 +82,13 @@ def email_generation(name, completed_items_list, un_completed_items_list, reimbu
             <li>Health Assessment Survey (Online through the Virgin Pulse app)</li>
             <li>One Digital Coaching Program (Online through the Virgin Pulse app)</li>
             <li>Two Activity Campaigns (Online through the Virgin Pulse app, below are 3 ways to achieve 1 campaign)</li>
-        </ol>
             <ol type="2">
                 <li>7k steps 20 days in one month</li>
                 <li>Join a team challenge (1 per quarter)</li>
                 <li>Healthy Habit Challenge (1 per month, 4 Healthy Habit Challenges = 1 activity campaign)</li>
             </ol>
+        </ol>
+
         <p>Once you have completed all 4 requirements you qualify to receive 50% reimbursements for any activities \
         or equipment you purchase, up to $100.00. </p>
         """)
@@ -114,7 +116,7 @@ def email_generation(name, completed_items_list, un_completed_items_list, reimbu
         <p>{un_completed_items_phrase}</p>
         <p>For more information on requirements and how to complete them, please visit \
         <a href="https://docs.google.com/document/d/1W2g3jE_YTvA_mnxMUA4wDw5IbiAq\
-        _1FuhUTHF32noIs/edit?usp=sharing">this link</a> \
+        _1FuhUTHF32noIs/edit?usp=sharing">this link.</a> \
         Please reach out to Michelle Prows if \
         you have any questions regarding these requirements.</p>
         <p>Sincerely,</p>
