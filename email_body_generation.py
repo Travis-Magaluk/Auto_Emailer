@@ -54,6 +54,12 @@ def un_completed_items(un_completed_items_list):
 
 def email_generation(name, completed_items_list, un_completed_items_list, reimbursements_received,
                      reimbursements_outstanding):
+
+    optional_text = """The first team challenge of 2023 is coming up soon and\
+     would like to encourage you to participate. Registration for the challenge opens on January 16th and the \
+     challenge runs from January 30th - February 26th. We hope you will participate if you are still in need of \
+     completing an Activity Campaign. \n"""
+
     if reimbursements_outstanding == 0:
         completed_items_phrase = (f"""You have completed all of the required activities for the health and wellness\
                 program. Thank you for participating in this program. To date, you have received ${reimbursements_received} in reimbursements.\
@@ -73,7 +79,7 @@ def email_generation(name, completed_items_list, un_completed_items_list, reimbu
         un_completed_items_phrase = ""
 
     elif len(completed_items_list) < 2:
-        completed_items_phrase = ("""<p>We encourage you to participate in Wasatch Academy’s Health and Wellness \
+        completed_items_phrase = (f"""<p>We encourage you to participate in Wasatch Academy’s Health and Wellness \
         program. In order to keep our benefits at the current level, we need your participation completing the 4 \
         Healthy Living Requirements. We wanted to reach out to ask for your help to achieve these goals</p>
         <p>Below are those 4 Healthy Living Requirements</p>
@@ -91,6 +97,8 @@ def email_generation(name, completed_items_list, un_completed_items_list, reimbu
 
         <p>Once you have completed all 4 requirements you qualify to receive 50% reimbursements for any activities \
         or equipment you purchase, up to $100.00. </p>
+        
+        <p> {optional_text} </p>
         """)
         un_completed_items_phrase = ""
 
@@ -100,8 +108,9 @@ def email_generation(name, completed_items_list, un_completed_items_list, reimbu
                             Thank you for your efforts in order to complete these health and
                              wellness initiatives.""")
         un_completed_items_string = un_completed_items(un_completed_items_list)
-        un_completed_items_phrase = (f"""In order to complete the requirements for the health and wellness program \
-                                    you still need to complete the {un_completed_items_string}""")
+        un_completed_items_phrase = (f"""<p>In order to complete the requirements for the health and wellness program \
+                                    you still need to complete the {un_completed_items_string}</p>
+                                    <p>{optional_text}</p>""")
 
     email_body = f"""
         <!DOCTYPE html>
@@ -113,14 +122,14 @@ def email_generation(name, completed_items_list, un_completed_items_list, reimbu
         at the current level, we need 70% participation from faculty and staff. I \
         wanted to reach out to update you on where you stand in this process.</p>
         <p>{completed_items_phrase}</p>
-        <p>{un_completed_items_phrase}</p>
+        {un_completed_items_phrase}
         <p>For more information on requirements and how to complete them, please visit \
-        <a href="https://docs.google.com/document/d/1W2g3jE_YTvA_mnxMUA4wDw5IbiAq\
-        _1FuhUTHF32noIs/edit?usp=sharing">this link.</a> \
-        Please reach out to Michelle Prows if \
+        <a href="https://drive.google.com/drive/folders/1aQ1pvrk22Fax-vKEKhaHNHCLKBDnurqC?usp=sharing">this link.</a> \
+        Please reach out to Michelle Prows or anyone on the Health and Wellness Committee if \
         you have any questions regarding these requirements.</p>
         <p>Sincerely,</p>
-        <p>The Health and Wellness Team</p>
+        <p>The Health and Wellness Committee</p>
+        <p>(Paul Applegarth, Michelle Prows, Josh McAllister, Whitney Tucker, and Travis Magaluk)</p>
 
         </body>
 

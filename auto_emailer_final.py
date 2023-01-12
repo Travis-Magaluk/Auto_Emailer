@@ -33,7 +33,7 @@ for i in range(len(all_data)):
 
     person_data = all_data.iloc[i]
 
-    if person_data[10] == 'Y':
+    if person_data[10] == 'Y':  # If the last email was sent, do not send anymore to this person. That is what this is doing.
         continue
 
     else:
@@ -58,7 +58,7 @@ for i in range(len(all_data)):
 
         email_body = email_body_generation.email_generation(name, completed, un_completed, r_rec, r_out)
         # print(email_body)
-        send_email.send_email('travis.magaluk@gmail.com', email, email_body, psw123)
+        send_email.send_email('michelle.prows@wasatchacademy.org', email, email_body, psw123)
         sent_count += 1
 
 print(sent_count, "emails were sent.")
